@@ -35,7 +35,7 @@ describe("NavIcon", () => {
       </NavIcon>
     );
 
-    expect(wrapper.contains(<path d="M 175 200 l 150 0" />)).toEqual(true);
+    expect(wrapper.contains(<path d="M 175 200 l 150 0" />)).toBe(true);
   });
 
   it("should use the to property as the anchor's href", () => {

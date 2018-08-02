@@ -18,13 +18,27 @@ const NavIcon = ({ title, color, children, to }) => (
 const containerStyle = css`
   width: 64px;
   display: inline-block;
+
+  @media (min-width: 420px) {
+    width: 70px;
+    margin: 10px;
+  }
+
+  @media (min-width: 900px) {
+    width: 100px;
+    margin: 17px;
+  }
 `;
 
 const titleStyle = css`
   margin: 4px;
-  font-size: 9.5px;
+  font-size: 3vw;
   font-family: Segoe UI, sans-serif;
   text-align: center;
+
+  @media (min-width: 420px) {
+    font-size: 1.5vw;
+  }
 `;
 
 export default NavIcon;
