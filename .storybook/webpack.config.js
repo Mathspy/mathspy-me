@@ -1,4 +1,5 @@
 module.exports = (baseConfig, env, defaultConfig) => {
+  defaultConfig.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/];
   // use installed babel-loader which is v8.0-beta (which is meant to work with @babel/core@7)
   defaultConfig.module.rules[0].use[0].loader = require.resolve("babel-loader");
 
