@@ -25,21 +25,60 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --ignore-path .gitignore --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "prettier": "^1.14.0",
-    "@storybook/react": "^4.0.0-alpha.14",
+    "@babel/core": "^7.0.0-beta.55",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.55",
+    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/preset-react": "^7.0.0-beta.55",
+    "@babel/runtime": "^7.0.0-beta.55",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",
     "@storybook/addons": "^4.0.0-alpha.14",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0"
+    "@storybook/react": "^4.0.0-alpha.14",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^8.0.0-beta.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.4.2",
+    "jest-emotion": "^9.2.7",
+    "prettier": "^1.14.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mathspy/mathspy-me"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "<rootDir>/jest-preprocess.js"
+    },
+    "setupTestFrameworkScriptFile": "./setupTests.js",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "/.cache/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(gatsby)/)"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "globals": {
+      "__PATH_PREFIX__": ""
+    },
+    "setupFiles": [
+      "<rootDir>/loadershim.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer",
+      "jest-emotion/serializer"
+    ],
+    "testURL": "http://localhost"
   }
 }
