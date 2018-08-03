@@ -2,8 +2,8 @@ import React from "react";
 
 import { css } from "emotion";
 
-import theme from "../theme";
-import prismTheme from "../prism-theme";
+import theme from "../../theme";
+import prismTheme from "../../prism-theme";
 
 const BlogPost = ({ title, html }) => {
   return (

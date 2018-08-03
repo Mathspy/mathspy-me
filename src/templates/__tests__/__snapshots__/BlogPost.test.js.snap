@@ -158,6 +158,10 @@ exports[`BlogPost should match snapshot 1`] = `
   background: linear-gradient( to right, rgba(224,145,66,0.2) 70%, rgba(224,145,66,0) );
 }
 
+.emotion-0 {
+  padding: 10px;
+}
+
 .emotion-0 p,
 .emotion-0 ul > li {
   line-height: 1.7;

@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withViewport } from "@storybook/addon-viewport";
 
-import BlogPost from "../src/components/BlogPost";
+import BlogPost from "../src/templates/BlogPost/BlogPost.js";
 
 storiesOf("BlogPost", module)
   .addDecorator(withViewport())

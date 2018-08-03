@@ -2,7 +2,19 @@ import React from "react";
 
 import { shallow, render } from "enzyme";
 
-import BlogPost from "../BlogPost";
+import BlogPost from "../BlogPost/BlogPost.js";
+import BlogPostWrapper from "../BlogPost";
+
+import Layout from "../../components/Layout";
+
+const data = {
+  markdownRemark: {
+    html: "<h1>Test HTML</h1>",
+    frontmatter: {
+      title: "Markdown Test!",
+    },
+  },
+};
 
 describe("BlogPost", () => {
   it("should be a simple div containing an h1 and another div", () => {
@@ -39,5 +51,21 @@ describe("BlogPost", () => {
     const wrapper = shallow(<BlogPost />);
 
     expect(wrapper).toMatchSnapshot();
+  });
+});
+
+describe("BlogPostWrapper", () => {
+  it("should render a BlogPost and surround it with Layout", () => {
+    const wrapper = shallow(<BlogPostWrapper data={data} />);
+    expect(wrapper.is(Layout)).toBe(true);
+    expect(wrapper.find(BlogPost)).toHaveLength(1);
+  });
+
+  it("should pass to it the title and html", () => {
+    const wrapper = shallow(<BlogPostWrapper data={data} />);
+    expect(wrapper.find(BlogPost).props()).toEqual({
+      title: data.markdownRemark.frontmatter.title,
+      html: data.markdownRemark.html,
+    });
   });
 });
