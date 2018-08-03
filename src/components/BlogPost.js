@@ -15,6 +15,8 @@ const BlogPost = ({ title, html }) => {
 };
 
 const blogStyles = css`
+  padding: 10px;
+
   p,
   ul > li {
     line-height: 1.7;
