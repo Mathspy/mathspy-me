@@ -18,6 +18,7 @@ const NavIcon = ({ title, color, children, to }) => (
 const containerStyle = css`
   width: 64px;
   display: inline-block;
+  text-decoration: none;
 
   @media (min-width: 420px) {
     width: 70px;
