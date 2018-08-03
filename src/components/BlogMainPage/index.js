@@ -1,7 +1,7 @@
 import React from "react";
-import BlogExcerpt from "../../components/BlogExcerpt";
+import BlogExcerpt from "../BlogExcerpt";
 
-const Blog = ({ edges }) => (
+const BlogMainPage = ({ edges }) => (
   <div>
     {edges.map(({ node }) => (
       <BlogExcerpt
@@ -14,4 +14,4 @@ const Blog = ({ edges }) => (
   </div>
 );
 
-export default Blog;
+export default BlogMainPage;

@@ -2,12 +2,12 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../../components/Layout";
 
-import Blog from "./Blog";
+import BlogMainPage from "../../components/BlogMainPage";
 
 export default ({ data }) => {
   return (
     <Layout>
-      <Blog edges={data.allMarkdownRemark.edges} />
+      <BlogMainPage edges={data.allMarkdownRemark.edges || []} />
     </Layout>
   );
 };
@@ -32,33 +32,3 @@ export const query = graphql`
     }
   }
 `;
-
-/*
-<div key={node.id}>
-  <Link
-    to={node.fields.slug}
-    className={css`
-      text-decoration: none;
-      color: inherit;
-    `}
-  >
-
-    <h3
-      className={css`
-        margin-bottom: 5px;
-      `}
-    >
-
-      {node.frontmatter.title}{" "}
-      <span
-        className={css`
-          color: #bbb;
-        `}
-      >
-        — {node.frontmatter.date}
-      </span>
-    </h3>
-    <p>{node.excerpt}</p>
-  </Link>
-</div>
-*/
