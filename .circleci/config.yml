@@ -36,8 +36,3 @@ jobs:
       # run tests!
       - run: npm test
       - run: npm run format -- --list-different
-      # Note this isn't here to actually deploy
-      # it is simply to test that the build succeeds as Netlify handles deployment
-      - run: npm run build
-
-
