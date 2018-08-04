@@ -47,22 +47,22 @@ exports[`Footer should match snapshot 1`] = `
     className="emotion-0"
   >
     <FooterLink
-      key="0"
+      key="b0c47058-0f4d-5488-81fa-40268a59e0b2"
       text="This blog post loves YOU!"
       to="/blog/123/"
     />
     <FooterLink
-      key="1"
+      key="2b08de1d-66cd-4108-adcc-4c1b5900a697"
       text="I am bad at writing good stories!"
       to="/notblog/123/"
     />
     <FooterLink
-      key="2"
+      key="48024e6d-e4a2-4e67-9841-eb9f6a362064"
       text="Once upon a time I was making a website with Gatsby, Jest and Storybook, and it was a lot of fun"
       to="/otherpage/"
     />
     <FooterLink
-      key="3"
+      key="bbe2062c-fb61-4935-9385-306d1c5af8ca"
       text="How to search and all that"
       to="https://www.google.com"
     />
