@@ -3,6 +3,7 @@ import { css } from "emotion";
 import Helmet from "react-helmet";
 
 import NavBar from "../NavBar";
+import Footer from "../Footer";
 
 import MathspyIcon from "../static/MathspyIcon";
 import ProjectsIcon from "../static/ProjectsIcon";
@@ -17,23 +18,40 @@ const Layout = ({ data, children }) => (
         { name: "keywords", content: "mathspy, blog" },
       ]}
     />
-    <div className={layoutStyles}>
-      <NavBar>
-        <MathspyIcon />
-        <ProjectsIcon />
-        <BlogIcon />
-      </NavBar>
-      <div className={contentStyles}>{children}</div>
+    <div className={outterLayoutStyles}>
+      <div className={innerLayoutStyles}>
+        <NavBar>
+          <MathspyIcon />
+          <ProjectsIcon />
+          <BlogIcon />
+        </NavBar>
+        <div className={contentStyles}>{children}</div>
+      </div>
+      <Footer />
     </div>
   </>
 );
 
-const layoutStyles = css`
+const innerLayoutStyles = css`
+  display: flex;
+  flex-direction: column;
+  flex: 10;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
+`;
+
+const outterLayoutStyles = css`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 
   @media (min-width: 420px) {
+    justify-content: space-between;
+  }
+
+  @media (min-width: 900px) {
     flex-direction: row;
   }
 `;
