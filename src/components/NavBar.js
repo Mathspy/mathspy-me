@@ -13,10 +13,9 @@ const containerStyle = css`
   justify-content: space-between;
   padding: 11px;
 
-  @media (min-width: 420px) {
+  @media (min-width: 600px) {
     justify-content: flex-start;
     padding: 10px;
-    flex: 2;
     flex-direction: column;
   }
 

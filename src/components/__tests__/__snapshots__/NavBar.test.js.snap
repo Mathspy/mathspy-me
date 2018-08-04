@@ -18,16 +18,13 @@ exports[`NavBar should match snapshot 1`] = `
   padding: 11px;
 }
 
-@media (min-width:420px) {
+@media (min-width:600px) {
   .emotion-0 {
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
     -ms-flex-pack: start;
     justify-content: flex-start;
     padding: 10px;
-    -webkit-flex: 2;
-    -ms-flex: 2;
-    flex: 2;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;

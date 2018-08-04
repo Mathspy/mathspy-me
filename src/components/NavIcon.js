@@ -26,6 +26,11 @@ const containerStyle = css`
   }
 
   @media (min-width: 900px) {
+    width: 75px;
+    margin: 13px;
+  }
+
+  @media (min-width: 1200px) {
     width: 100px;
     margin: 17px;
   }
@@ -38,7 +43,11 @@ const titleStyle = css`
   text-align: center;
 
   @media (min-width: 420px) {
-    font-size: 1.5vw;
+    font-size: 10px;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 15px;
   }
 `;
 
