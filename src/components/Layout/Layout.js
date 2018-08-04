@@ -9,7 +9,7 @@ import MathspyIcon from "../static/MathspyIcon";
 import ProjectsIcon from "../static/ProjectsIcon";
 import BlogIcon from "../static/BlogIcon";
 
-const Layout = ({ data, children }) => (
+const Layout = ({ data, children, pathname }) => (
   <>
     <Helmet
       title={data.site.siteMetadata.title}
@@ -27,7 +27,7 @@ const Layout = ({ data, children }) => (
         </NavBar>
         <div className={contentStyles}>{children}</div>
       </div>
-      <Footer />
+      <Footer pathname={pathname} />
     </div>
   </>
 );

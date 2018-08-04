@@ -7,7 +7,7 @@ import "../../css/index.js";
 
 import InnerLayout from "./Layout";
 
-const Layout = ({ children, data }) => (
+const Layout = props => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -18,7 +18,7 @@ const Layout = ({ children, data }) => (
         }
       }
     `}
-    render={data => <InnerLayout data={data}>{children}</InnerLayout>}
+    render={data => <InnerLayout data={data} {...props} />}
   />
 );
 

@@ -4,10 +4,10 @@ import Layout from "../../components/Layout";
 
 import BlogPost from "./BlogPost";
 
-export default ({ data }) => {
+export default ({ data, location }) => {
   const { frontmatter, html } = data.markdownRemark;
   return (
-    <Layout>
+    <Layout pathname={location.pathname}>
       <BlogPost title={frontmatter.title} html={html} />
     </Layout>
   );

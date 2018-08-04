@@ -56,16 +56,32 @@ describe("BlogPost", () => {
 
 describe("BlogPostWrapper", () => {
   it("should render a BlogPost and surround it with Layout", () => {
-    const wrapper = shallow(<BlogPostWrapper data={data} />);
+    const wrapper = shallow(
+      <BlogPostWrapper data={data} location={fauxLocation} />
+    );
     expect(wrapper.is(Layout)).toBe(true);
     expect(wrapper.find(BlogPost)).toHaveLength(1);
   });
 
   it("should pass to it the title and html", () => {
-    const wrapper = shallow(<BlogPostWrapper data={data} />);
+    const wrapper = shallow(
+      <BlogPostWrapper data={data} location={fauxLocation} />
+    );
     expect(wrapper.find(BlogPost).props()).toEqual({
       title: data.markdownRemark.frontmatter.title,
       html: data.markdownRemark.html,
     });
   });
+
+  it("should pass pathname into the Layout", () => {
+    const wrapper = shallow(
+      <BlogPostWrapper data={data} location={fauxLocation} />
+    );
+
+    expect(wrapper.prop("pathname")).toBe("testpathname");
+  });
 });
+
+const fauxLocation = {
+  pathname: "testpathname",
+};

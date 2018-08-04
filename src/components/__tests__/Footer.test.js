@@ -52,7 +52,23 @@ describe("FooterWrapper", () => {
     const inner = wrapper.prop("render")(data);
 
     expect(inner.type).toBe(Footer);
-    expect(inner.props).toEqual({ links });
+  });
+
+  it("should always only pass 3 links or less to Footer", () => {
+    const wrapper = shallow(<FooterWrapper />);
+
+    const inner = wrapper.prop("render")(data);
+
+    expect(inner.props.links).toHaveLength(3);
+    expect(inner.props).toEqual({ links: links.slice(0, 3) });
+  });
+
+  it("should not pass a link where the slug matches pathname passed to it", () => {
+    const wrapper = shallow(<FooterWrapper pathname={links[2].url} />);
+
+    const inner = wrapper.prop("render")(data);
+
+    expect(inner.props.links).not.toContainEqual(links[2]);
   });
 });
 
