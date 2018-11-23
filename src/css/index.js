@@ -8,6 +8,7 @@ injectGlobal`
 
   body {
     display: flex;
+    margin: 0 5px;
     justify-content: center;
     align-items: center;
     /* Special thanks to https://www.svgbackgrounds.com/ for this amazing background! */
