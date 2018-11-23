@@ -10,9 +10,7 @@ const Layout = ({ data, children }) => (
         { name: "keywords", content: "mathspy, blog" },
       ]}
     />
-    <div>
-      {children}
-    </div>
+    <div>{children}</div>
   </>
 );
 
