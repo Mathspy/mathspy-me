@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Marvellous upgrade Calculator!</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="core.js"></script>
+	<link rel="stylesheet" type="text/css" href="beauty.css">
+</head>
+<body>
+	<h2>Prices: <a style="text-decoration: underline; color: yellow;" href="https://forums.warpportal.com/index.php?/topic/201433-a-truly-marvellous-upgrade-calculator/">How to Use</a>
+		<span style="margin-left: 80px">
+			<span class="server" data="chaos">Chaos</span>
+			<span class="server" data="thor">Thor</span>
+			<span class="server" data="odin">Odin</span>
+			<span style="opacity: 0" class="server" data="nova">Nova</span>
+		</span>
+	</h2>
+	<table>
+		<tr>
+			<td>Normal Ore</td>
+			<td><input type="text" id="nOre" class="beautify" value="?"></td>
+			<td class="notnova">Use Ragi.al Prices</td>
+			<td class="notnova"><input type="checkbox" id="ragial" checked="true"></td>
+		</tr>
+		<tr>
+			<td>Enriched Ore</td>
+			<td><input type="text" id="eOre" class="beautify" value="2470000"></td>
+			<td class="notnova">100KP = ??M</td>
+			<td class="notnova"><input type="text" class="kp" id="kpValue" value="13"></td>
+		</tr>
+		<tr class="notodin notnova">
+			<td>HD Ore</td>
+			<td><input type="text" id="hdOre" class="beautify" value="?"></td>
+			<td>Use 100 box values</td>
+			<td><input type="checkbox" class="kpCheckBox" id="specialHDOreBox"></td>
+		</tr>
+		<tr class="notodin">
+			<td>HD Brad/Carn</td>
+			<td><input type="text" id="hdBradCarn" class="beautify" value="1950000"></td>
+			<td class="notnova">Use 100 box values</td>
+			<td class="notnova"><input type="checkbox" class="kpCheckBox" id="specialHDBradBox"></td>
+		</tr>
+		<tr class="notodin notnova">
+			<td>Safe +7 Cert</td>
+			<td><input type="text" id="sevenCert" class="beautify" value="?"></td>
+		</tr>
+		<tr class="notodin notnova">
+			<td>Safe +10 Cert</td>
+			<td><input type="text" id="tenCert" class="beautify" value="?"></td>
+		</tr>
+		<tr class="notodin notnova">
+			<td>Blacksmith Blessing</td>
+			<td><input type="text" class="beautify" id="blackBless"></td>
+		</tr>
+		<tr>
+			<td>Current Item Price</td>
+			<td><input type="text" id="itemPrice" class="beautify" value="0"></td>
+		</tr>
+		<tr>
+			<td>Type</td>
+			<td>
+				<select id="type">
+					<option value="weapon">Weapon</option>
+					<option value="headgear">Headgear</option>
+					<option value="body">Other</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Weapon Level3?</td>
+			<td><input type="checkbox" name="isWp3" class="weaponCheckbox" id="wp3"></td>
+		</tr>
+		<tr class="notodin">
+			<td>Own Mastersmith J70</td>
+			<td><input type="checkbox" name="hasMastersmith" class="weaponCheckbox" id="hasMS"></td>
+		</tr>
+		<tr class="notodin notnova">
+			<td>Special Event?</td>
+			<td><input type="checkbox" name="isSpecial" id="isSpecial"></td>
+			<td>Generous Hammer?</td>
+			<td><input type="checkbox" name="isGenerous" id="isGenerous"></td>
+		</tr>
+		<tr class="notodin notnova">
+			<td>Enriched Hammer?</td>
+			<td><input type="checkbox" name="isEnriched" id="isEnriched" checked="true"></td>
+			<td>Mrs Hammer?</td>
+			<td><input type="checkbox" name="isMrs" id="isMrs"></td>
+		</tr>
+		<tr>
+			<td>Current refine level</td>
+			<td><input type="text" name="refine" id="refine" value="0"></td>
+		</tr>
+
+	</table>
+	<input type="button" value="Magyks <3" name="calculate" id="calculate">
+	<p style="font-size: 6px">&copy; Mathspy under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+	<hr />
+	<div>
+		<div id="up5" class="hidden">
+			<h3 id="notSoSafe">To +5</h3>
+			<table id="fifthTable">
+				<tr id="nOre5a">
+					<td>Using Normal Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="nOre5" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="nOreI5" disabled="true"></td>
+				</tr>
+				<tr id="eOre5a">
+					<td>Using Enriched Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="eOre5" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="eOreI5" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="cert75a">
+					<td>Using +7 Cert</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="cert75" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="cert7I5" disabled="true"></td>
+				</tr>
+				<tr id="speEnr5a" class="hidden">
+					<td>Using SPECIAL Enriched</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speEnr5" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="speEnrI5" disabled="true"></td>
+				</tr>
+				<tr id="master5a" class="hidden">
+					<td><a href="http://irowiki.org/wiki/Upgrade_Weapon" target="_blank" title="Only for weapons">Using Mastersmith's skill</a></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="master5" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="masterI5" disabled="true"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="up6" class="hidden">
+			<h3>To +6</h3>
+			<table>
+				<tr id="nOre6a">
+					<td>Using Normal Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="nOre6" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="nOreI6" disabled="true"></td>
+				</tr>
+				<tr id="eOre6a">
+					<td>Using Enriched Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="eOre6" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="eOreI6" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="cert76a">
+					<td>Using +7 Cert</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="cert76" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="cert7I6" disabled="true"></td>
+				</tr>
+				<tr id="speEnr6a" class="hidden">
+					<td>Using SPECIAL Enriched</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speEnr6" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="speEnrI6" disabled="true"></td>
+				</tr>
+				<tr id="master6a" class="hidden">
+					<td><a href="http://irowiki.org/wiki/Upgrade_Weapon" target="_blank" title="Only for weapons">Using Mastersmith's skill</a></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="master6" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="masterI6" disabled="true"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="up7" class="hidden">
+			<h3>To +7</h3>
+			<table>
+				<tr id="nOre7a">
+					<td>Using Normal Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="nOre7" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="nOreI7" disabled="true"></td>
+				</tr>
+				<tr id="eOre7a">
+					<td>Using Enriched Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="eOre7" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="eOreI7" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="cert77a">
+					<td>Using +7 Cert</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="cert77" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="cert7I7" disabled="true"></td>
+				</tr>
+				<tr id="speEnr7a" class="hidden">
+					<td>Using SPECIAL Enriched</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speEnr7" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="speEnrI7" disabled="true"></td>
+				</tr>
+				<tr id="master7a" class="hidden">
+					<td><a href="http://irowiki.org/wiki/Upgrade_Weapon" target="_blank" title="Only for weapons">Using Mastersmith's skill</a></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="master7" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="masterI7" disabled="true"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="up8" class="hidden">
+			<h3>To +8</h3>
+			<table>
+				<tr id="nOre8a">
+					<td>Using Normal Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="nOre8" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="nOreI8" disabled="true"></td>
+				</tr>
+				<tr id="eOre8a">
+					<td>Using Enriched Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="eOre8" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="eOreI8" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="enrHam8a">
+					<td>Using Enriched <strong>Hammer</strong></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="enrHam8" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="enrHamI8" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="hdHam8a">
+					<td>Using HD <strong>Hammer</strong></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdHam8" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="hdHamI8" disabled="true"></td>
+				</tr>
+				<tr id="bsb8a" class="hidden">
+					<td>Using Blacksmith's Blessing</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="bsb8" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="bsbI8" disabled="true"></td>
+				</tr>
+				<tr id="speEnr8a" class="hidden">
+					<td>Using SPECIAL Enriched</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speEnr8" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="speEnrI8" disabled="true"></td>
+				</tr>
+				<tr id="master8a" class="hidden">
+					<td><a href="http://irowiki.org/wiki/Upgrade_Weapon" target="_blank" title="Only for weapons">Using Mastersmith's skill</a></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="master8" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="masterI8" disabled="true"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="up9" class="hidden">
+			<h3>To +9</h3>
+			<table>
+				<tr id="nOre9a">
+					<td>Using Normal Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="nOre9" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="nOreI9" disabled="true"></td>
+				</tr>
+				<tr id="eOre9a">
+					<td>Using Enriched Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="eOre9" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="eOreI9" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="enrHam9a">
+					<td>Using Enriched <strong>Hammer</strong></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="enrHam9" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="enrHamI9" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="hdHam9a">
+					<td>Using HD <strong>Hammer</strong></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdHam9" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="hdHamI9" disabled="true"></td>
+				</tr>
+				<tr id="bsb9a" class="hidden">
+					<td>Using Blacksmith's Blessing</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="bsb9" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="bsbI9" disabled="true"></td>
+				</tr>
+				<tr id="speEnr9a" class="hidden">
+					<td>Using SPECIAL Enriched</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speEnr9" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="speEnrI9" disabled="true"></td>
+				</tr>
+				<tr id="master9a" class="hidden">
+					<td><a href="http://irowiki.org/wiki/Upgrade_Weapon" target="_blank" title="Only for weapons">Using Mastersmith's skill</a></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="master9" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="masterI9" disabled="true"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="up10" class="hidden">
+			<h3>To +10</h3>
+			<table>
+				<tr id="nOre10a">
+					<td>Using Normal Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="nOre10" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="nOreI10" disabled="true"></td>
+				</tr>
+				<tr id="eOre10a">
+					<td>Using Enriched Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="eOre10" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="eOreI10" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="cert1010a">
+					<td>Using +10 Cert</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="cert1010" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="cert10I10" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="enrHam10a">
+					<td>Using HD + Enriched <strong>Hammer</strong></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="enrHam10" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="enrHamI10" disabled="true"></td>
+				</tr>
+				<tr class="notodin notnova" id="hdHam10a">
+					<td>Using HD ONLY <strong>Hammer</strong></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdHam10" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="hdHamI10" disabled="true"></td>
+				</tr>
+				<tr id="bsb10a" class="hidden">
+					<td>Using Blacksmith's Blessing</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="bsb10" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="bsbI10" disabled="true"></td>
+				</tr>
+				<tr id="speEnr10a" class="hidden">
+					<td>Using SPECIAL Enriched</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speEnr10" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="speEnrI10" disabled="true"></td>
+				</tr>
+				<tr id="master10a" class="hidden">
+					<td><a href="http://irowiki.org/wiki/Upgrade_Weapon" target="_blank" title="Only for weapons">Using Mastersmith's skill</a></td>
+					<td>Zeny:</td>
+					<td><input type="text" id="master10" disabled="true"></td>
+					<td>Items:</td>
+					<td><input type="text" class="itembox" id="masterI10" disabled="true"></td>
+				</tr>
+			</table>
+		</div>
+
+		<hr />
+
+		<div id="up11" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +11</h3></td></tr>
+				<tr id="hdBradCarn11a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn11" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI11" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn11a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn11" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI11" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up12" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +12</h3></td></tr>
+				<tr id="hdBradCarn12a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn12" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI12" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn12a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn12" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI12" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up13" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +13</h3></td></tr>
+				<tr id="hdBradCarn13a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn13" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI13" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn13a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn13" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI13" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up14" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +14</h3></td></tr>
+				<tr id="hdBradCarn14a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn14" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI14" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn14a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn14" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI14" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up15" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +15</h3></td></tr>
+				<tr id="hdBradCarn15a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn15" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI15" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn15a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn15" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI15" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up16" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +16</h3></td></tr>
+				<tr id="hdBradCarn16a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn16" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI16" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn16a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn16" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI16" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up17" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +17</h3></td></tr>
+				<tr id="hdBradCarn17a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn17" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI17" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn17a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn17" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI17" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up18" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +18</h3></td></tr>
+				<tr id="hdBradCarn18a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn18" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI18" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn18a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn18" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI18" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up19" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +19</h3></td></tr>
+				<tr id="hdBradCarn19a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn19" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI19" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn19a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn19" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI19" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+		<div id="up20" class="hidden">
+			<table>
+				<tr><th colspan="3"><h3 class="titly">To +20</h3></td></tr>
+				<tr id="hdBradCarn20a" class="hidden">
+					<td>Using HD Brad/Carn</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="hdBradCarn20" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="hdBradCarnI20" disabled="true"></td> -->
+				</tr>
+				<tr id="speBradCarn20a" class="hidden">
+					<td>Using SPECIAL HD Ore</td>
+					<td>Zeny:</td>
+					<td><input type="text" id="speBradCarn20" disabled="true"></td>
+					<!-- <td>Items:</td>
+					<td><input type="text" class="itembox" id="speBradCarnI20" disabled="true"></td> -->
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="thanksMike hidden">
+		<svg class="byeNotfication" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+			<path d="M0 0h24v24H0z" fill="none"/>
+		</svg>
+		<p style="padding-top: 7px; padding-bottom: 7px;">You might notice you have been redirected to a new domain, the calculator has been moved! Special thanks to Mike for hosting us for over a year &lt;3<br />From now on, you can access the calculator through <a href="https://mathspy.me/iROUpgradeCalc/">https://mathspy.me/iROUpgradeCalc/</a></p>
+	</div>
+</body>
+</html>

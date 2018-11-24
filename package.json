@@ -27,7 +27,7 @@
     "personal"
   ],
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build && cp -r src/old-projects/* public/",
     "develop": "gatsby develop",
     "format": "prettier --ignore-path .gitignore --write '**/*.js'",
     "test": "jest",
