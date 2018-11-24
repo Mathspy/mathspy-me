@@ -1,0 +1,79 @@
+body {
+	font-family: Arial;
+}
+
+h2 {
+	background-color: #315b95;
+	color: white;
+}
+h3 {
+	background-color: #315b95;
+	margin-bottom: 5px;
+	color: white;
+}
+
+a {
+	border-bottom: 1px dotted #000;
+    text-decoration: none;
+}
+a:visited {
+	color: black;
+}
+a:link {
+	color: blue;
+}
+a:active {
+	color: green;
+}
+
+tr {
+	background-color: #CCCCCC;
+}
+
+.future {
+	display: none;
+}
+
+.cell1 {
+	font-weight: bold;
+}
+
+.itembox {
+	width: 60px;
+}
+
+.hidden {
+	display: none;
+}
+
+.titly {
+	margin: 0;
+}
+
+.kp {
+	width: 20px;
+}
+
+.server {
+	font-size: 14px;
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-style: dashed;
+}
+
+.thanksMike {
+	position: fixed;
+	border-radius: 10px;
+   width: 90%;
+   top: 10px;
+   right: 5%;
+   background: orange;
+   text-align: center;
+}
+
+.byeNotfication {
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
