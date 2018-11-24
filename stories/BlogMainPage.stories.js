@@ -3,15 +3,10 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withViewport } from "@storybook/addon-viewport";
 
-import { MemoryRouter } from "react-router";
-
 import BlogMainPage from "../src/components/BlogMainPage";
 
 storiesOf("BlogMainPage", module)
   .addDecorator(withViewport())
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
-  ))
   .add("A single post", () => <BlogMainPage edges={edges.slice(0, 1)} />, {
     viewport: "smalldesktop",
   })

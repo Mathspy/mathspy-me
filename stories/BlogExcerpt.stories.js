@@ -3,15 +3,10 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withViewport } from "@storybook/addon-viewport";
 
-import { MemoryRouter } from "react-router";
-
 import BlogExcerpt from "../src/components/BlogExcerpt";
 
 storiesOf("BlogExcerpt", module)
   .addDecorator(withViewport())
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
-  ))
   .add("Simple excerpt", () => simpleExcerpt, {
     viewport: "smalldesktop",
   })
