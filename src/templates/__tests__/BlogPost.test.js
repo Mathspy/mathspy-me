@@ -42,7 +42,7 @@ describe("BlogPost", () => {
   });
 
   it("should render the html passed to it", () => {
-    const wrapper = render(<BlogPost html="<div class=&quot;test&quot; />" />);
+    const wrapper = render(<BlogPost html='<div class="test" />' />);
 
     expect(wrapper.find("div.test")).toHaveLength(1);
   });

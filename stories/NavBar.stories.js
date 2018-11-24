@@ -3,8 +3,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withViewport } from "@storybook/addon-viewport";
 
-import { MemoryRouter } from "react-router";
-
 import NavBar from "../src/components/NavBar";
 
 import MathspyIcon from "../src/components/static/MathspyIcon";
@@ -13,9 +11,6 @@ import BlogIcon from "../src/components/static/BlogIcon";
 
 storiesOf("NavBar", module)
   .addDecorator(withViewport())
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
-  ))
   .add(
     "Empty",
     () => (
